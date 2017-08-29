@@ -35,31 +35,40 @@ var router = _express2.default.Router();
  */
 router.post("/", validate.createVideo, function () {
 	var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res) {
-		var videoObj, result;
+		var videoObj, result, savedObj;
 		return _regenerator2.default.wrap(function _callee$(_context) {
 			while (1) {
 				switch (_context.prev = _context.next) {
 					case 0:
 						videoObj = req.body;
-						_context.prev = 1;
-						_context.next = 4;
+						result = {};
+						_context.prev = 2;
+						_context.next = 5;
 						return videoService.createVideo(videoObj.name, videoObj.keywords);
 
-					case 4:
-						result = _context.sent;
+					case 5:
+						savedObj = _context.sent;
+
+
+						result.status = "success";
+						result.message = "Successfully created";
+						result.data = savedObj;
 						return _context.abrupt("return", res.status(201).json(result));
 
-					case 8:
-						_context.prev = 8;
-						_context.t0 = _context["catch"](1);
-						return _context.abrupt("return", res.status(400).send(_context.t0));
+					case 12:
+						_context.prev = 12;
+						_context.t0 = _context["catch"](2);
 
-					case 11:
+						result.status = "error";
+						result.message = _context.t0.message || "unable to create. please check video object";
+						return _context.abrupt("return", res.status(400).json(result));
+
+					case 17:
 					case "end":
 						return _context.stop();
 				}
 			}
-		}, _callee, undefined, [[1, 8]]);
+		}, _callee, undefined, [[2, 12]]);
 	}));
 
 	return function (_x, _x2) {
@@ -70,33 +79,42 @@ router.post("/", validate.createVideo, function () {
 /*
  * Get video object by id
  */
-router.get("/:id", validate.getVideo, function () {
+router.get("/:id", validate.getVideoById, function () {
 	var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, res) {
-		var id, result;
+		var id, result, videoObj;
 		return _regenerator2.default.wrap(function _callee2$(_context2) {
 			while (1) {
 				switch (_context2.prev = _context2.next) {
 					case 0:
 						id = req.params.id;
-						_context2.prev = 1;
-						_context2.next = 4;
-						return videoService.getVideo(id);
+						result = {};
+						_context2.prev = 2;
+						_context2.next = 5;
+						return videoService.getVideoById(id);
 
-					case 4:
-						result = _context2.sent;
+					case 5:
+						videoObj = _context2.sent;
+
+
+						result.status = "success";
+						result.message = "Successfully fetched";
+						result.data = videoObj;
 						return _context2.abrupt("return", res.status(200).json(result));
 
-					case 8:
-						_context2.prev = 8;
-						_context2.t0 = _context2["catch"](1);
-						return _context2.abrupt("return", res.status(400).send(_context2.t0));
+					case 12:
+						_context2.prev = 12;
+						_context2.t0 = _context2["catch"](2);
 
-					case 11:
+						result.status = "error";
+						result.message = "unable to get video by given id";
+						return _context2.abrupt("return", res.status(400).send(result));
+
+					case 17:
 					case "end":
 						return _context2.stop();
 				}
 			}
-		}, _callee2, undefined, [[1, 8]]);
+		}, _callee2, undefined, [[2, 12]]);
 	}));
 
 	return function (_x3, _x4) {
@@ -105,35 +123,43 @@ router.get("/:id", validate.getVideo, function () {
 }());
 
 /*
- * Get video object by id
+ * Get video list
  */
-router.get("/", validate.getVideo, function () {
+router.get("/", function () {
 	var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res) {
-		var id, result;
+		var result, list;
 		return _regenerator2.default.wrap(function _callee3$(_context3) {
 			while (1) {
 				switch (_context3.prev = _context3.next) {
 					case 0:
-						id = req.params.id;
+						result = {};
 						_context3.prev = 1;
 						_context3.next = 4;
-						return videoService.getVideo(id);
+						return videoService.getVideoList();
 
 					case 4:
-						result = _context3.sent;
+						list = _context3.sent;
+
+
+						result.status = "success";
+						result.message = "Successfully fetched video list";
+						result.data = list;
 						return _context3.abrupt("return", res.status(200).json(result));
 
-					case 8:
-						_context3.prev = 8;
-						_context3.t0 = _context3["catch"](1);
-						return _context3.abrupt("return", res.status(400).send(_context3.t0));
-
 					case 11:
+						_context3.prev = 11;
+						_context3.t0 = _context3["catch"](1);
+
+						result.status = "error";
+						result.message = "unable to fetch video list";
+						return _context3.abrupt("return", res.status(400).send(result));
+
+					case 16:
 					case "end":
 						return _context3.stop();
 				}
 			}
-		}, _callee3, undefined, [[1, 8]]);
+		}, _callee3, undefined, [[1, 11]]);
 	}));
 
 	return function (_x5, _x6) {
@@ -142,35 +168,42 @@ router.get("/", validate.getVideo, function () {
 }());
 
 /*
- * Get video object by id
+ * Update video object by id
  */
-router.put("/:id", validate.getVideo, function () {
+router.put("/:id", validate.updateVideoById, function () {
 	var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(req, res) {
-		var id, result;
+		var id, videoObj, result;
 		return _regenerator2.default.wrap(function _callee4$(_context4) {
 			while (1) {
 				switch (_context4.prev = _context4.next) {
 					case 0:
 						id = req.params.id;
-						_context4.prev = 1;
-						_context4.next = 4;
-						return videoService.getVideo(id);
+						videoObj = req.body;
+						result = {};
+						_context4.prev = 3;
+						_context4.next = 6;
+						return videoService.updateVideoById(id, videoObj);
 
-					case 4:
-						result = _context4.sent;
+					case 6:
+
+						result.status = "success";
+						result.message = "Successfully updated";
 						return _context4.abrupt("return", res.status(200).json(result));
 
-					case 8:
-						_context4.prev = 8;
-						_context4.t0 = _context4["catch"](1);
-						return _context4.abrupt("return", res.status(400).send(_context4.t0));
-
 					case 11:
+						_context4.prev = 11;
+						_context4.t0 = _context4["catch"](3);
+
+						result.status = "error";
+						result.message = "unable to update video object";
+						return _context4.abrupt("return", res.status(400).send(result));
+
+					case 16:
 					case "end":
 						return _context4.stop();
 				}
 			}
-		}, _callee4, undefined, [[1, 8]]);
+		}, _callee4, undefined, [[3, 11]]);
 	}));
 
 	return function (_x7, _x8) {
@@ -179,9 +212,9 @@ router.put("/:id", validate.getVideo, function () {
 }());
 
 /*
- * Get video object by id
+ * Delete video object by id
  */
-router.delete("/:id", validate.getVideo, function () {
+router.delete("/:id", validate.deleteVideoById, function () {
 	var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(req, res) {
 		var id, result;
 		return _regenerator2.default.wrap(function _callee5$(_context5) {
@@ -189,25 +222,31 @@ router.delete("/:id", validate.getVideo, function () {
 				switch (_context5.prev = _context5.next) {
 					case 0:
 						id = req.params.id;
-						_context5.prev = 1;
-						_context5.next = 4;
-						return videoService.getVideo(id);
+						result = {};
+						_context5.prev = 2;
+						_context5.next = 5;
+						return videoService.deleteVideoById(id);
 
-					case 4:
-						result = _context5.sent;
+					case 5:
+
+						result.status = "success";
+						result.message = "Successfully deleted";
 						return _context5.abrupt("return", res.status(200).json(result));
 
-					case 8:
-						_context5.prev = 8;
-						_context5.t0 = _context5["catch"](1);
-						return _context5.abrupt("return", res.status(400).send(_context5.t0));
+					case 10:
+						_context5.prev = 10;
+						_context5.t0 = _context5["catch"](2);
 
-					case 11:
+						result.status = "error";
+						result.message = "unable to delete video object with given id";
+						return _context5.abrupt("return", res.status(400).send(result));
+
+					case 15:
 					case "end":
 						return _context5.stop();
 				}
 			}
-		}, _callee5, undefined, [[1, 8]]);
+		}, _callee5, undefined, [[2, 10]]);
 	}));
 
 	return function (_x9, _x10) {

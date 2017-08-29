@@ -18,7 +18,7 @@ var videoSchema = new Schema({
   createdDate: Date,
   name: String,
   keywords: Array
-}, { collection: 'video' });
+}, { collection: 'video', versionKey: false });
 
 exports.default = _mongoose2.default.model('Video', videoSchema);
 //# sourceMappingURL=video.js.map

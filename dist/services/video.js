@@ -3,15 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.getVideo = exports.createVideo = undefined;
-
-var _regenerator = require("babel-runtime/regenerator");
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require("babel-runtime/helpers/asyncToGenerator");
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+exports.deleteVideoById = exports.updateVideoById = exports.getVideoList = exports.getVideoById = exports.createVideo = undefined;
 
 var _video = require("../models/video");
 
@@ -22,75 +14,93 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * @ Create video
  */
-var createVideo = exports.createVideo = function () {
-	var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(name, keywords) {
-		var video;
-		return _regenerator2.default.wrap(function _callee$(_context) {
-			while (1) {
-				switch (_context.prev = _context.next) {
-					case 0:
-						video = new _video2.default();
+var createVideo = exports.createVideo = function createVideo(name, keywords) {
 
-						video.createdDate = new Date();
-						video.name = name;
-						video.keywords = keywords;
+	var video = new _video2.default();
+	video.createdDate = new Date();
+	video.name = name;
+	video.keywords = keywords;
 
-						return _context.abrupt("return", new Promise(function (resolve, reject) {
-							video.save(function (err, reply) {
-								if (err) {
-									return reject(err);
-								}
-
-								resolve(reply);
-							});
-						}));
-
-					case 5:
-					case "end":
-						return _context.stop();
-				}
+	return new Promise(function (resolve, reject) {
+		video.save(function (err, reply) {
+			if (err) {
+				return reject(err);
 			}
-		}, _callee, undefined);
-	}));
 
-	return function createVideo(_x, _x2) {
-		return _ref.apply(this, arguments);
-	};
-}();
+			resolve(reply);
+		});
+	});
+};
 
 /**
- * @ Create video
+ * @ Get video by id
  */
-var getVideo = exports.getVideo = function () {
-	var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(id) {
-		return _regenerator2.default.wrap(function _callee2$(_context2) {
-			while (1) {
-				switch (_context2.prev = _context2.next) {
-					case 0:
-						return _context2.abrupt("return", new Promise(function (resolve, reject) {
-							_video2.default.findOne({ _id: id }, function (err, video) {
-								if (err) {
-									return reject(err);
-								}
-
-								if (!video) {
-									return reject("Unable to find video object with given id");
-								}
-
-								resolve(video);
-							});
-						}));
-
-					case 1:
-					case "end":
-						return _context2.stop();
-				}
+var getVideoById = exports.getVideoById = function getVideoById(id) {
+	return new Promise(function (resolve, reject) {
+		_video2.default.findOne({ _id: id }, function (err, video) {
+			if (err) {
+				return reject(err);
 			}
-		}, _callee2, undefined);
-	}));
 
-	return function getVideo(_x3) {
-		return _ref2.apply(this, arguments);
-	};
-}();
+			if (!video) {
+				return reject("Unable to find video object with given id");
+			}
+
+			resolve(video);
+		});
+	});
+};
+
+/**
+ * @ Get video list
+ */
+var getVideoList = exports.getVideoList = function getVideoList() {
+	return new Promise(function (resolve, reject) {
+		_video2.default.find({}).exec(function (err, list) {
+			if (err) {
+				return reject(err);
+			}
+
+			resolve(list);
+		});
+	});
+};
+
+/**
+ * @ Update video object by id
+ */
+var updateVideoById = exports.updateVideoById = function updateVideoById(id, videoObj) {
+	return new Promise(function (resolve, reject) {
+
+		var newVideoObj = {
+			name: videoObj.name,
+			keywords: videoObj.keywords
+		};
+
+		_video2.default.findOneAndUpdate({ _id: id }, newVideoObj, { new: true }, function (err, newDoc) {
+			if (err) {
+				return reject(err);
+			}
+
+			resolve(newDoc);
+		});
+	});
+};
+
+/**
+ * @ Delete video object by id
+ */
+var deleteVideoById = exports.deleteVideoById = function deleteVideoById(id) {
+	return new Promise(function (resolve, reject) {
+		_video2.default.deleteOne({ _id: id }, function (err, resp) {
+			if (err) {
+				return reject(err);
+			}
+
+			console.log(err);
+
+			resolve("success");
+		});
+	});
+};
 //# sourceMappingURL=video.js.map

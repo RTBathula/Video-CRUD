@@ -7,6 +7,6 @@ const videoSchema = new Schema({
   createdDate: Date,
   name: String,
   keywords: Array
-}, { collection: 'video' });
+}, { collection: 'video', versionKey: false});
 
 export default mongoose.model('Video', videoSchema);

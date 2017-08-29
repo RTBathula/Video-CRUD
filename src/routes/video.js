@@ -7,75 +7,104 @@ const router = express.Router();
 /*
  * Create video object
  */
-router.post("/", validate.createVideo, async (req, res) => {	
-    
-	let videoObj = req.body;  
+router.post("/", validate.createVideo, async (req, res) => {	    
+	let videoObj = req.body; 
+	let result = {}; 
 
 	try{
-		let result = await videoService.createVideo(videoObj.name, videoObj.keywords);
+		let savedObj = await videoService.createVideo(videoObj.name, videoObj.keywords);
+
+		result.status = "success";
+		result.message = "Successfully created";
+		result.data = savedObj;
 		return res.status(201).json(result);
+
 	}catch(err){
-		return res.status(400).send(err);
+		result.status = "error";	
+		result.message = err.message || "unable to create. please check video object";	
+		return res.status(400).json(result);
 	}  
 }); 
 
 /*
  * Get video object by id
  */
-router.get("/:id", validate.getVideo, async (req, res) => {	
-    
+router.get("/:id", validate.getVideoById, async (req, res) => {	    
 	let id = req.params.id;  
+	let result = {}; 
 
 	try{
-		let result = await videoService.getVideo(id);
+		let videoObj = await videoService.getVideoById(id);
+
+		result.status = "success";
+		result.message = "Successfully fetched";
+		result.data = videoObj;
 		return res.status(200).json(result);
 	}catch(err){
-		return res.status(400).send(err);
+		result.status = "error";	
+		result.message = "unable to get video by given id";
+		return res.status(400).send(result);
 	}  
 });
 
 /*
- * Get video object by id
+ * Get video list
  */
-router.get("/", validate.getVideo, async (req, res) => {	
-    
-	let id = req.params.id;  
+router.get("/", async (req, res) => {	 	 
+	let result = {}; 
 
 	try{
-		let result = await videoService.getVideo(id);
+		let list = await videoService.getVideoList();
+
+		result.status = "success";
+		result.message = "Successfully fetched video list";
+		result.data = list;
 		return res.status(200).json(result);
 	}catch(err){
-		return res.status(400).send(err);
+		result.status = "error";	
+		result.message = "unable to fetch video list";
+		return res.status(400).send(result);
 	}  
 });
 
 /*
- * Get video object by id
+ * Update video object by id
  */
-router.put("/:id", validate.getVideo, async (req, res) => {	
-    
+router.put("/:id", validate.updateVideoById, async (req, res) => {	    
 	let id = req.params.id;  
+	let videoObj = req.body;
+	let result = {}; 
 
 	try{
-		let result = await videoService.getVideo(id);
+		await videoService.updateVideoById(id, videoObj);
+
+		result.status = "success";
+		result.message = "Successfully updated";		
 		return res.status(200).json(result);
 	}catch(err){
-		return res.status(400).send(err);
+		result.status = "error";	
+		result.message = "unable to update video object";
+		return res.status(400).send(result);
 	}  
 });
 
 /*
- * Get video object by id
+ * Delete video object by id
  */
-router.delete("/:id", validate.getVideo, async (req, res) => {	
-    
-	let id = req.params.id;  
+router.delete("/:id", validate.deleteVideoById, async (req, res) => {	    
+	let id = req.params.id;  	
+	let result = {}; 
 
 	try{
-		let result = await videoService.getVideo(id);
+		await videoService.deleteVideoById(id);
+
+		result.status = "success";
+		result.message = "Successfully deleted";		
 		return res.status(200).json(result);
 	}catch(err){
-		return res.status(400).send(err);
+		result.status = "error";	
+		result.message = "unable to delete video object with given id";
+		return res.status(400).send(result);
 	}  
 });
 
