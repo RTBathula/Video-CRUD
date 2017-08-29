@@ -3,7 +3,7 @@ import Video from "../models/video";
 /**
  * @ Create video
  */
-export const createVideo = async (name, keywords) => {               
+export const createVideo = (name, keywords) => {               
      
 	let video = new Video();
 	video.createdDate = new Date();    
@@ -24,7 +24,7 @@ export const createVideo = async (name, keywords) => {
 /**
  * @ Create video
  */
-export const getVideo = async (id) => {     
+export const getVideo = (id) => {     
 	return new Promise((resolve, reject) => {
 		Video.findOne({_id: id },(err, video) => {
 		    if (err) {

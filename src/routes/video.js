@@ -7,7 +7,7 @@ const router = express.Router();
 /*
  * Create video object
  */
-router.post("/", validate.createVideo, (req, res) => {	
+router.post("/", validate.createVideo, async (req, res) => {	
     
 	let videoObj = req.body;  
 
@@ -22,7 +22,7 @@ router.post("/", validate.createVideo, (req, res) => {
 /*
  * Get video object by id
  */
-router.get("/:id", validate.getVideo, (req, res) => {	
+router.get("/:id", validate.getVideo, async (req, res) => {	
     
 	let id = req.params.id;  
 
@@ -37,7 +37,7 @@ router.get("/:id", validate.getVideo, (req, res) => {
 /*
  * Get video object by id
  */
-router.get("/", validate.getVideo, (req, res) => {	
+router.get("/", validate.getVideo, async (req, res) => {	
     
 	let id = req.params.id;  
 
@@ -52,7 +52,7 @@ router.get("/", validate.getVideo, (req, res) => {
 /*
  * Get video object by id
  */
-router.put("/:id", validate.getVideo, (req, res) => {	
+router.put("/:id", validate.getVideo, async (req, res) => {	
     
 	let id = req.params.id;  
 
@@ -67,7 +67,7 @@ router.put("/:id", validate.getVideo, (req, res) => {
 /*
  * Get video object by id
  */
-router.delete("/:id", validate.getVideo, (req, res) => {	
+router.delete("/:id", validate.getVideo, async (req, res) => {	
     
 	let id = req.params.id;  
 

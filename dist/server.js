@@ -32,10 +32,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
           return _mongoose2.default.connect(_keys2.default.MONGO_URL + "/" + _keys2.default.DATABASE);
 
         case 2:
-          _context.next = 4;
-          return (0, _app.listen)();
+          (0, _app.listen)(); //Run express server		
 
-        case 4:
+        case 3:
         case "end":
           return _context.stop();
       }
