@@ -67,7 +67,7 @@ router.put("/:id", validate.getVideo, (req, res) => {
 /*
  * Get video object by id
  */
-router.delete("/:id", validate.getVideo, (req, res) => {	
+router.get("/:id", validate.getVideo, (req, res) => {	
     
 	let id = req.params.id;  
 
