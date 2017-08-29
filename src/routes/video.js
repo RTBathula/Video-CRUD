@@ -43,7 +43,7 @@ router.get("/:id", validate.getVideoById, async (req, res) => {
 	}catch(err){
 		result.status = "error";	
 		result.message = "unable to get video by given id";
-		return res.status(400).send(result);
+		return res.status(400).json(result);
 	}  
 });
 
@@ -63,7 +63,7 @@ router.get("/", async (req, res) => {
 	}catch(err){
 		result.status = "error";	
 		result.message = "unable to fetch video list";
-		return res.status(400).send(result);
+		return res.status(400).json(result);
 	}  
 });
 
@@ -84,7 +84,7 @@ router.put("/:id", validate.updateVideoById, async (req, res) => {
 	}catch(err){
 		result.status = "error";	
 		result.message = "unable to update video object";
-		return res.status(400).send(result);
+		return res.status(400).json(result);
 	}  
 });
 
@@ -104,7 +104,7 @@ router.delete("/:id", validate.deleteVideoById, async (req, res) => {
 	}catch(err){
 		result.status = "error";	
 		result.message = "unable to delete video object with given id";
-		return res.status(400).send(result);
+		return res.status(400).json(result);
 	}  
 });
 
