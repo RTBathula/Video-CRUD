@@ -1,7 +1,9 @@
 import Video from "../models/video";
 
-/**
- * @ Create video
+/*
+ * Create video object
+ * @param {name,keywords}
+ * @return saved video object
  */
 export const createVideo = (name, keywords) => {               
      
@@ -21,8 +23,10 @@ export const createVideo = (name, keywords) => {
 	}); 
 }
 
-/**
- * @ Get video by id
+/*
+ * Get video object by id
+ * @param id
+ * @return video object
  */
 export const getVideoById = (id) => {     
 	return new Promise((resolve, reject) => {
@@ -41,8 +45,9 @@ export const getVideoById = (id) => {
 }
 
 
-/**
- * @ Get video list
+/*
+ * Get video object list
+ * @return video list(array)
  */
 export const getVideoList = () => {     
 	return new Promise((resolve, reject) => {
@@ -57,8 +62,10 @@ export const getVideoList = () => {
 }
 
 
-/**
- * @ Update video object by id
+/*
+ * Update video object by id
+ * @param id,{name,keywords}
+ * @return success message
  */
 export const updateVideoById = (id, videoObj) => {     
 	return new Promise((resolve, reject) => {
@@ -78,8 +85,10 @@ export const updateVideoById = (id, videoObj) => {
 	}); 
 }
 
-/**
- * @ Delete video object by id
+/*
+ * Delete video object by id
+ * @param id
+ * @return success message
  */
 export const deleteVideoById = (id) => {     
 	return new Promise((resolve, reject) => {

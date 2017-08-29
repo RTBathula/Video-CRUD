@@ -6,6 +6,8 @@ const router = express.Router();
 
 /*
  * Create video object
+ * @param {name,keywords}
+ * @return saved video object
  */
 router.post("/", validate.createVideo, async (req, res) => {	    
 	let videoObj = req.body; 
@@ -28,6 +30,8 @@ router.post("/", validate.createVideo, async (req, res) => {
 
 /*
  * Get video object by id
+ * @param id
+ * @return video object
  */
 router.get("/:id", validate.getVideoById, async (req, res) => {	    
 	let id = req.params.id;  
@@ -48,7 +52,8 @@ router.get("/:id", validate.getVideoById, async (req, res) => {
 });
 
 /*
- * Get video list
+ * Get video object list
+ * @return video list(array)
  */
 router.get("/", async (req, res) => {	 	 
 	let result = {}; 
@@ -69,6 +74,8 @@ router.get("/", async (req, res) => {
 
 /*
  * Update video object by id
+ * @param id,{name,keywords}
+ * @return success message
  */
 router.put("/:id", validate.updateVideoById, async (req, res) => {	    
 	let id = req.params.id;  
@@ -90,6 +97,8 @@ router.put("/:id", validate.updateVideoById, async (req, res) => {
 
 /*
  * Delete video object by id
+ * @param id
+ * @return success message
  */
 router.delete("/:id", validate.deleteVideoById, async (req, res) => {	    
 	let id = req.params.id;  	

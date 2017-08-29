@@ -32,6 +32,8 @@ var router = _express2.default.Router();
 
 /*
  * Create video object
+ * @param {name,keywords}
+ * @return saved video object
  */
 router.post("/", validate.createVideo, function () {
 	var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res) {
@@ -78,6 +80,8 @@ router.post("/", validate.createVideo, function () {
 
 /*
  * Get video object by id
+ * @param id
+ * @return video object
  */
 router.get("/:id", validate.getVideoById, function () {
 	var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, res) {
@@ -107,7 +111,7 @@ router.get("/:id", validate.getVideoById, function () {
 
 						result.status = "error";
 						result.message = "unable to get video by given id";
-						return _context2.abrupt("return", res.status(400).send(result));
+						return _context2.abrupt("return", res.status(400).json(result));
 
 					case 17:
 					case "end":
@@ -123,7 +127,8 @@ router.get("/:id", validate.getVideoById, function () {
 }());
 
 /*
- * Get video list
+ * Get video object list
+ * @return video list(array)
  */
 router.get("/", function () {
 	var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res) {
@@ -152,7 +157,7 @@ router.get("/", function () {
 
 						result.status = "error";
 						result.message = "unable to fetch video list";
-						return _context3.abrupt("return", res.status(400).send(result));
+						return _context3.abrupt("return", res.status(400).json(result));
 
 					case 16:
 					case "end":
@@ -169,6 +174,8 @@ router.get("/", function () {
 
 /*
  * Update video object by id
+ * @param id,{name,keywords}
+ * @return success message
  */
 router.put("/:id", validate.updateVideoById, function () {
 	var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(req, res) {
@@ -196,7 +203,7 @@ router.put("/:id", validate.updateVideoById, function () {
 
 						result.status = "error";
 						result.message = "unable to update video object";
-						return _context4.abrupt("return", res.status(400).send(result));
+						return _context4.abrupt("return", res.status(400).json(result));
 
 					case 16:
 					case "end":
@@ -213,6 +220,8 @@ router.put("/:id", validate.updateVideoById, function () {
 
 /*
  * Delete video object by id
+ * @param id
+ * @return success message
  */
 router.delete("/:id", validate.deleteVideoById, function () {
 	var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(req, res) {
@@ -239,7 +248,7 @@ router.delete("/:id", validate.deleteVideoById, function () {
 
 						result.status = "error";
 						result.message = "unable to delete video object with given id";
-						return _context5.abrupt("return", res.status(400).send(result));
+						return _context5.abrupt("return", res.status(400).json(result));
 
 					case 15:
 					case "end":

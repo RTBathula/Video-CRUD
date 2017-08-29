@@ -11,8 +11,10 @@ var _video2 = _interopRequireDefault(_video);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * @ Create video
+/*
+ * Create video object
+ * @param {name,keywords}
+ * @return saved video object
  */
 var createVideo = exports.createVideo = function createVideo(name, keywords) {
 
@@ -22,18 +24,20 @@ var createVideo = exports.createVideo = function createVideo(name, keywords) {
 	video.keywords = keywords;
 
 	return new Promise(function (resolve, reject) {
-		video.save(function (err, reply) {
+		video.save(function (err, savedDoc) {
 			if (err) {
 				return reject(err);
 			}
 
-			resolve(reply);
+			resolve(savedDoc);
 		});
 	});
 };
 
-/**
- * @ Get video by id
+/*
+ * Get video object by id
+ * @param id
+ * @return video object
  */
 var getVideoById = exports.getVideoById = function getVideoById(id) {
 	return new Promise(function (resolve, reject) {
@@ -51,8 +55,9 @@ var getVideoById = exports.getVideoById = function getVideoById(id) {
 	});
 };
 
-/**
- * @ Get video list
+/*
+ * Get video object list
+ * @return video list(array)
  */
 var getVideoList = exports.getVideoList = function getVideoList() {
 	return new Promise(function (resolve, reject) {
@@ -66,8 +71,10 @@ var getVideoList = exports.getVideoList = function getVideoList() {
 	});
 };
 
-/**
- * @ Update video object by id
+/*
+ * Update video object by id
+ * @param id,{name,keywords}
+ * @return success message
  */
 var updateVideoById = exports.updateVideoById = function updateVideoById(id, videoObj) {
 	return new Promise(function (resolve, reject) {
@@ -87,8 +94,10 @@ var updateVideoById = exports.updateVideoById = function updateVideoById(id, vid
 	});
 };
 
-/**
- * @ Delete video object by id
+/*
+ * Delete video object by id
+ * @param id
+ * @return success message
  */
 var deleteVideoById = exports.deleteVideoById = function deleteVideoById(id) {
 	return new Promise(function (resolve, reject) {
@@ -96,8 +105,6 @@ var deleteVideoById = exports.deleteVideoById = function deleteVideoById(id) {
 			if (err) {
 				return reject(err);
 			}
-
-			console.log(err);
 
 			resolve("success");
 		});

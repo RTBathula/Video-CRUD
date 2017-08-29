@@ -4,6 +4,9 @@ import {
 	isArray
 } from "../helpers/util";
 
+/*
+ * Middleware validate video object
+ */
 export const createVideo = (req, res, next) => { 	
 	let videoObj = req.body || null; 	 
 
@@ -18,6 +21,9 @@ export const createVideo = (req, res, next) => {
 	return next();
 }
 
+/*
+ * Middleware validate video object id
+ */
 export const getVideoById = (req, res, next) => { 		
 	let id = req.params.id; 		
 
@@ -32,6 +38,10 @@ export const getVideoById = (req, res, next) => {
 	return next();
 }
 
+/*
+ * Middleware validate video object id
+ * validate video object 
+ */
 export const updateVideoById = (req, res, next) => { 		
 	let id = req.params.id; 
 	let videoObj = req.body || null; 
@@ -55,6 +65,9 @@ export const updateVideoById = (req, res, next) => {
 	return next();
 }
 
+/*
+ * Middleware validate video object id
+ */
 export const deleteVideoById = (req, res, next) => { 		
 	let id = req.params.id; 		
 
@@ -69,7 +82,11 @@ export const deleteVideoById = (req, res, next) => {
 	return next();
 }
 
-//Private functions
+//Private helper functions
+
+/*
+ * Validate video object fields
+ */
 const _isValidVideoObject = (videoObj) => { 	
 
 	if(!isJsonObject(videoObj)){
@@ -95,6 +112,9 @@ const _isValidVideoObject = (videoObj) => {
 	return null;
 }	
 
+/*
+ * Validate mongo object id
+ */
 const _isValidateId = (id) => { 	
 
 	if(!id){		

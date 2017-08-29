@@ -7,6 +7,9 @@ exports.deleteVideoById = exports.updateVideoById = exports.getVideoById = expor
 
 var _util = require("../helpers/util");
 
+/*
+ * Middleware validate video object
+ */
 var createVideo = exports.createVideo = function createVideo(req, res, next) {
 	var videoObj = req.body || null;
 
@@ -21,6 +24,9 @@ var createVideo = exports.createVideo = function createVideo(req, res, next) {
 	return next();
 };
 
+/*
+ * Middleware validate video object id
+ */
 var getVideoById = exports.getVideoById = function getVideoById(req, res, next) {
 	var id = req.params.id;
 
@@ -35,6 +41,10 @@ var getVideoById = exports.getVideoById = function getVideoById(req, res, next) 
 	return next();
 };
 
+/*
+ * Middleware validate video object id
+ * validate video object 
+ */
 var updateVideoById = exports.updateVideoById = function updateVideoById(req, res, next) {
 	var id = req.params.id;
 	var videoObj = req.body || null;
@@ -58,6 +68,9 @@ var updateVideoById = exports.updateVideoById = function updateVideoById(req, re
 	return next();
 };
 
+/*
+ * Middleware validate video object id
+ */
 var deleteVideoById = exports.deleteVideoById = function deleteVideoById(req, res, next) {
 	var id = req.params.id;
 
@@ -72,7 +85,11 @@ var deleteVideoById = exports.deleteVideoById = function deleteVideoById(req, re
 	return next();
 };
 
-//Private functions
+//Private helper functions
+
+/*
+ * Validate video object fields
+ */
 var _isValidVideoObject = function _isValidVideoObject(videoObj) {
 
 	if (!(0, _util.isJsonObject)(videoObj)) {
@@ -98,6 +115,9 @@ var _isValidVideoObject = function _isValidVideoObject(videoObj) {
 	return null;
 };
 
+/*
+ * Validate mongo object id
+ */
 var _isValidateId = function _isValidateId(id) {
 
 	if (!id) {
