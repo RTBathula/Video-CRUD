@@ -1,0 +1,20 @@
+version: '2'
+services:
+    node:
+        build: 
+            context: .
+            dockerfile: Dockerfile.test
+        depends_on:
+            - mongodb     
+        ports:
+            - "8080:8080"       
+        links:           
+            - mongodb          
+        env_file:
+        - .env.test    
+
+    mongodb:
+        image: mvertes/alpine-mongo:3.2.3
+        restart: unless-stopped
+        ports:
+            - "27017:27017"           
