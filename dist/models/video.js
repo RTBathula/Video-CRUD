@@ -13,12 +13,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Schema = _mongoose2.default.Schema;
 var ObjectId = Schema.ObjectId;
 
+//Video object schema definition
 var videoSchema = new Schema({
   id: ObjectId,
   createdDate: Date,
   name: String,
   keywords: Array
-}, { collection: 'video' });
+}, { collection: 'video', versionKey: false });
 
 exports.default = _mongoose2.default.model('Video', videoSchema);
 //# sourceMappingURL=video.js.map

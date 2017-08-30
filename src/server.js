@@ -6,9 +6,9 @@ import configKeys from "./config/keys";
  * Bootup database and run express server
  */
 (async () => {		
-	await mongoose.connect(`${configKeys.MONGO_URL}/${configKeys.DATABASE}`);	
+	await mongoose.connect(`${configKeys.MONGO_URL}/${configKeys.DATABASE}`,{useMongoClient: true});	
 	listen(); //Run express server		
-})()
+})();
 
 
 

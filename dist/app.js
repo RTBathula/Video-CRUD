@@ -19,6 +19,14 @@ var _keys2 = _interopRequireDefault(_keys);
 
 var _util = require("./helpers/util");
 
+var _swaggerTools = require("swagger-tools");
+
+var _swaggerTools2 = _interopRequireDefault(_swaggerTools);
+
+var _yamljs = require("yamljs");
+
+var _yamljs2 = _interopRequireDefault(_yamljs);
+
 var _index = require("./routes/index");
 
 var _index2 = _interopRequireDefault(_index);
@@ -26,12 +34,17 @@ var _index2 = _interopRequireDefault(_index);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-
-//Routes
-
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_bodyParser2.default.json());
 app.use(_express2.default.static(__dirname));
+
+//Load api docs yml and serve the Swagger documents and Swagger UI		
+if (_keys2.default.ENABLE_APIDOCS) {
+	var swaggerDoc = _yamljs2.default.load(_keys2.default.APIDOCSYML_FILEPATH);
+	_swaggerTools2.default.initializeMiddleware(swaggerDoc, function (middleware) {
+		app.use(middleware.swaggerUi());
+	});
+}
 
 //If req body is a string, convert it to JSON.
 app.use(function (req, res, next) {

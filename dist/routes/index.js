@@ -18,6 +18,5 @@ var router = _express2.default.Router();
 
 //Mount video routes at /video
 router.use("/video", _video2.default);
-
 exports.default = router;
 //# sourceMappingURL=index.js.map
