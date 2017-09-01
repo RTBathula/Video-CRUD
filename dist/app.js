@@ -39,7 +39,7 @@ app.use(_bodyParser2.default.json());
 app.use(_express2.default.static(__dirname));
 
 //Load api docs yml and serve the Swagger documents and Swagger UI		
-if (_keys2.default.ENABLE_APIDOCS) {
+if (_keys2.default.ENABLE_AUTO_DOCS) {
 	var swaggerDoc = _yamljs2.default.load(_keys2.default.APIDOCSYML_FILEPATH);
 	_swaggerTools2.default.initializeMiddleware(swaggerDoc, function (middleware) {
 		app.use(middleware.swaggerUi());

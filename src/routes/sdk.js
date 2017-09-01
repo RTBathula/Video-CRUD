@@ -1,15 +1,22 @@
 import express from "express";
+import configKeys from "../config/keys";
 import request from "request";
 import {getPublicUrl} from "../helpers/ngrok";
 const router = express.Router();
 
-/*
- * Get sdk by given language
- * @param lang
- * @return zipped sdk
- */
+/**
+ * Get the requested language sdk as zip file
+ * Gets the public url froom ngrok
+ * Makes REST request to Swagger generated API to get sdk
+ * @param lang language
+ * @returns zipfile
+ */ 
 router.get("/:lang", async (req, res) => {	    
 	let lang = req.params.lang;
+
+	if(!configKeys.ENABLE_AUTO_DOCS){
+		return res.status(400).send("this feature is not enabled");
+	}
 
 	try {
 

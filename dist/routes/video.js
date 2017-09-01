@@ -30,7 +30,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-/*
+/**
  * Create video object
  * @param {name,keywords}
  * @return saved video object
@@ -78,7 +78,7 @@ router.post("/", validate.createVideo, function () {
 	};
 }());
 
-/*
+/**
  * Get video object by id
  * @param id
  * @return video object
@@ -126,7 +126,7 @@ router.get("/:id", validate.getVideoById, function () {
 	};
 }());
 
-/*
+/**
  * Get video object list
  * @return video list(array)
  */
@@ -172,7 +172,7 @@ router.get("/", function () {
 	};
 }());
 
-/*
+/**
  * Update video object by id
  * @param id,{name,keywords}
  * @return success message
@@ -218,7 +218,7 @@ router.put("/:id", validate.updateVideoById, function () {
 	};
 }());
 
-/*
+/**
  * Delete video object by id
  * @param id
  * @return success message

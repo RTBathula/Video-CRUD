@@ -1,29 +1,25 @@
-import {listen,close} from '../src/app'
-import {bootupDB} from '../src/dbsetup'
-import {dropDatabase,connectionClose} from '../src/databases/mongo'
+import {listen,close} from '../dist/app';
+import configKeys from "../dist/config/keys";
+import mongoose from'mongoose';
+var server
 
 /*
-  Bootup database and run express server in test env
+  Bootup database and run express server
 */
-before((done) => {		
-	bootupDB().then(() => {
-	  return listen()
-	}).then(nodeServer => {
-		server = nodeServer
-		done()
-	})
+before(async() => {
+	try{
+		await mongoose.connect(`${configKeys.MONGO_URL}/${configKeys.DATABASE}`,{useMongoClient: true});			
+		server = await listen();
+		return;			
+	}catch(err){
+		throw err;
+	}
 });
 
 /*
-  Drop test db,close mongo connection and close server
+  Close server
 */
-after((done) => {		
-	dropDatabase().then(() => {
-		return connectionClose(global.mongoCon)
-	}).then(() => {
-		return close(server)
-	}).then(() => {		
-		done()
-	})
+after(async() => {
+	await close(server);
+	return;		
 })
-

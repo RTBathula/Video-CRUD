@@ -16,6 +16,10 @@ var _express = require("express");
 
 var _express2 = _interopRequireDefault(_express);
 
+var _keys = require("../config/keys");
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _request = require("request");
 
 var _request2 = _interopRequireDefault(_request);
@@ -26,10 +30,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-/*
- * Get sdk by given language
- * @param lang
- * @return zipped sdk
+/**
+ * Get the requested language sdk as zip file
+ * Gets the public url froom ngrok
+ * Makes REST request to Swagger generated API to get sdk
+ * @param lang language
+ * @returns zipfile
  */
 router.get("/:lang", function () {
 	var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res) {
@@ -39,11 +45,20 @@ router.get("/:lang", function () {
 				switch (_context.prev = _context.next) {
 					case 0:
 						lang = req.params.lang;
-						_context.prev = 1;
-						_context.next = 4;
+
+						if (_keys2.default.ENABLE_AUTO_DOCS) {
+							_context.next = 3;
+							break;
+						}
+
+						return _context.abrupt("return", res.status(400).send("this feature is not enabled"));
+
+					case 3:
+						_context.prev = 3;
+						_context.next = 6;
 						return (0, _ngrok.getPublicUrl)();
 
-					case 4:
+					case 6:
 						publicUrl = _context.sent;
 
 
@@ -68,20 +83,20 @@ router.get("/:lang", function () {
 							}).pipe(res);
 						});
 
-						_context.next = 11;
+						_context.next = 13;
 						break;
 
-					case 8:
-						_context.prev = 8;
-						_context.t0 = _context["catch"](1);
+					case 10:
+						_context.prev = 10;
+						_context.t0 = _context["catch"](3);
 						return _context.abrupt("return", res.status(400).send(_context.t0));
 
-					case 11:
+					case 13:
 					case "end":
 						return _context.stop();
 				}
 			}
-		}, _callee, undefined, [[1, 8]]);
+		}, _callee, undefined, [[3, 10]]);
 	}));
 
 	return function (_x, _x2) {

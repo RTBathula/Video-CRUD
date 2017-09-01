@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 //Load api docs yml and serve the Swagger documents and Swagger UI		
-if(configKeys.ENABLE_APIDOCS){
+if(configKeys.ENABLE_AUTO_DOCS){
 	const swaggerDoc = YAML.load(configKeys.APIDOCSYML_FILEPATH);
 	swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {  
 	  app.use(middleware.swaggerUi());

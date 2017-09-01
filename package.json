@@ -7,7 +7,8 @@
     "node": "8.2.1"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --recursive",
+    "test": "npm run build && npm run mocha",
+    "mocha": "./node_modules/.bin/mocha --compilers js:babel-core/register --recursive",
     "build": "rm -rf dist && mkdir dist && babel src -s -d dist",
     "start": "npm run build && node ./dist/server"
   },

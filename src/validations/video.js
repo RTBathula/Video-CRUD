@@ -88,7 +88,6 @@ export const deleteVideoById = (req, res, next) => {
  * Validate video object fields
  */
 const _isValidVideoObject = (videoObj) => { 	
-
 	if(!isJsonObject(videoObj)){
 		return "invalid video object";	
 	}
@@ -116,7 +115,6 @@ const _isValidVideoObject = (videoObj) => {
  * Validate mongo object id
  */
 const _isValidateId = (id) => { 	
-
 	if(!id){		
 		return "id is required";			
 	}

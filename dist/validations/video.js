@@ -91,7 +91,6 @@ var deleteVideoById = exports.deleteVideoById = function deleteVideoById(req, re
  * Validate video object fields
  */
 var _isValidVideoObject = function _isValidVideoObject(videoObj) {
-
 	if (!(0, _util.isJsonObject)(videoObj)) {
 		return "invalid video object";
 	}
@@ -119,7 +118,6 @@ var _isValidVideoObject = function _isValidVideoObject(videoObj) {
  * Validate mongo object id
  */
 var _isValidateId = function _isValidateId(id) {
-
 	if (!id) {
 		return "id is required";
 	}
