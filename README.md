@@ -40,9 +40,12 @@ Example: http://localhost:8080/sdk/javascript
 
 Alternatively you can create sdk in current directory if you running docker with following command
 ```
+./gen-sdk {lang}
+
+//Example
 ./gen-sdk javascript
 ```
-Which creates javscript sdk in sdk folder
+Which creates javascript sdk in sdk folder
 
 
 ## To run simple api tests
@@ -54,11 +57,12 @@ You can change configuration in  src/config/keys.js file
 
 Example: under src/config/keys.js
 ```
-keys.ENABLE_AUTO_DOCS = false;
+//Enable or disable api docs and sdk
+keys.ENABLE_AUTO_DOCS = false; 
 ```
 
-you can also tweak environments by .env file
-currently using .env.example file for demo
+You can also set environments by creating **.env** file.
+Currently using **.env.example** file for demo purpose
 
 ## Love :heart: to hear feedback from you
 RT Bathula-weirdo,coffee lover
