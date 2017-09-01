@@ -29,7 +29,7 @@ paths:
           schema:
             $ref: "#/definitions/VideoObject"
       responses:
-        "200":
+        "201":
           description: Success
           schema:
             $ref: "#/definitions/VideoObjectResponse"
