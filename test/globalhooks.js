@@ -1,6 +1,6 @@
 import {listen,close} from '../dist/app';
 import configKeys from "../dist/config/keys";
-import mongoose from'mongoose';
+import mongoose from "mongoose";
 var server
 
 /*
