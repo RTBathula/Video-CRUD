@@ -9,19 +9,19 @@ export const createVideo = (name, keywords) => {
      
 	let video = new Video();
 	video.createdDate = new Date();    
-    video.name = name;
-    video.keywords = keywords;	
+	video.name = name;
+	video.keywords = keywords;	
 
 	return new Promise((resolve, reject) => {
 		video.save((err, savedDoc) => {
-		    if (err) {
-		    	return reject(err);  
-		    }  
+			if (err) {
+				return reject(err);  
+			}  
 
-		    resolve(savedDoc);		      
+			resolve(savedDoc);		      
 		});
 	}); 
-}
+};
 
 /*
  * Get video object by id
@@ -30,19 +30,19 @@ export const createVideo = (name, keywords) => {
  */
 export const getVideoById = (id) => {     
 	return new Promise((resolve, reject) => {
-		Video.findOne({_id: id},(err, video) => {
-		    if (err) {
-		    	return reject(err);  
-		    }  
+		Video.findOne({_id: id}, (err, video) => {
+			if(err) {
+				return reject(err);  
+			}  
 
-		    if(!video){
-		    	return reject("Unable to find video object with given id");
-		    }
-		    
-		    resolve(video);		      
+			if(!video){
+				return reject("Unable to find video object with given id");
+			}
+
+			resolve(video);		      
 		});
 	}); 
-}
+};
 
 
 /*
@@ -52,14 +52,14 @@ export const getVideoById = (id) => {
 export const getVideoList = () => {     
 	return new Promise((resolve, reject) => {
 		Video.find({}).exec((err, list) => {
-		    if (err) {
-		    	return reject(err);  
-		    }     
-		    
-		    resolve(list);		      
+			if (err) {
+				return reject(err);  
+			}     
+
+			resolve(list);		      
 		});
 	}); 
-}
+};
 
 
 /*
@@ -76,14 +76,14 @@ export const updateVideoById = (id, videoObj) => {
 		};
 
 		Video.findOneAndUpdate({_id: id}, newVideoObj, {new: true}, (err, newDoc) => {
-		    if (err) {
-		    	return reject(err);  
-		    }     
-		    
-		    resolve(newDoc);		      
-		})
+			if (err) {
+				return reject(err);  
+			}     
+
+			resolve(newDoc);		      
+		});
 	}); 
-}
+};
 
 /*
  * Delete video object by id
@@ -93,10 +93,11 @@ export const updateVideoById = (id, videoObj) => {
 export const deleteVideoById = (id) => {     
 	return new Promise((resolve, reject) => {
 		Video.deleteOne({_id: id}, (err, resp) => {
-		    if (err) {
-		    	return reject(err);  
-		    } 		   
-		    resolve(resp.deletedCount);		      
+			if (err) {
+				return reject(err);  
+			} 
+			
+			resolve(resp.deletedCount);		      
 		});
 	}); 
-}
+};

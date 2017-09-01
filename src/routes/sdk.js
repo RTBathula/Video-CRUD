@@ -21,28 +21,26 @@ router.get("/:lang", async (req, res) => {
 	try {
 
 		const publicUrl = await getPublicUrl();	
-		
+
 		request({
 			method: "POST", 
-	        url: `http://generator.swagger.io/api/gen/clients/${lang}`,
-	        json: {
-			    swaggerUrl: `${publicUrl}/api-docs`	
+			url: `http://generator.swagger.io/api/gen/clients/${lang}`,
+			json: {
+				swaggerUrl: `${publicUrl}/api-docs`	
 			}
-    	},(err, data, body) => {
-    	    		
-    		if(err || body.type === "error"){
-    			return res.status(400).send("unable get the sdk, check the requested language");
-    		}
+		}, (err, data, body) => {
 
-		    request({
+			if(err || body.type === "error"){
+				return res.status(400).send("unable get the sdk, check the requested language");
+			}
+			
+			request({
 				method: "GET", 
-		        rejectUnauthorized: false, 
-		        url: body.link
-	    	})
-	    	.on('error', err => {
-			    return res.status(400).send("unable get the sdk");
-			})
-			.pipe(res);
+				rejectUnauthorized: false, 
+				url: body.link
+			}).on("error", () => {
+				return res.status(400).send("unable get the sdk");
+			}).pipe(res);
 		});		
 
 	}catch(err){

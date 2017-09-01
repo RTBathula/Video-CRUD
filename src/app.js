@@ -15,7 +15,7 @@ app.use(express.static(__dirname));
 if(configKeys.ENABLE_AUTO_DOCS){
 	const swaggerDoc = YAML.load(configKeys.APIDOCSYML_FILEPATH);
 	swaggerTools.initializeMiddleware(swaggerDoc, (middleware) => {  
-	  app.use(middleware.swaggerUi());
+		app.use(middleware.swaggerUi());
 	});
 }	
 
@@ -59,7 +59,7 @@ export const listen = () => {
 			resolve(server);
 		});
 	});
-}
+};
 
 //Close express server
 export const close = (server) => {
@@ -68,4 +68,4 @@ export const close = (server) => {
 			resolve(`Video CRUD API(${configKeys.ENV}) server successfully closed`); 
 		});
 	});  
-}
+};

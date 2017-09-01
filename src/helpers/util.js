@@ -12,7 +12,7 @@ export const isJsonParsable = (json) => {
 	}      
   
 	return true;
-}
+};
 
 /*
  * Checks is json or not
@@ -24,7 +24,7 @@ export const isJsonObject = (json) => {
 	}
 	
 	return true;
-}
+};
 
 /*
  * Checks is array or not
@@ -36,7 +36,7 @@ export const isArray = (list) => {
 	}
 	
 	return true;
-}
+};
 
 /*
  * Checks is mongo object id or not
@@ -50,4 +50,4 @@ export const isMongoObjectIdValid = (id) => {
 	}
 	
 	return true;
-}
+};

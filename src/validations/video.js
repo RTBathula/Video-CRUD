@@ -19,7 +19,7 @@ export const createVideo = (req, res, next) => {
 	}
 
 	return next();
-}
+};
 
 /*
  * Middleware validate video object id
@@ -36,7 +36,7 @@ export const getVideoById = (req, res, next) => {
 	}
 
 	return next();
-}
+};
 
 /*
  * Middleware validate video object id
@@ -63,7 +63,7 @@ export const updateVideoById = (req, res, next) => {
 	}
 
 	return next();
-}
+};
 
 /*
  * Middleware validate video object id
@@ -80,7 +80,7 @@ export const deleteVideoById = (req, res, next) => {
 	}
 
 	return next();
-}
+};
 
 //Private helper functions
 
@@ -109,7 +109,7 @@ const _isValidVideoObject = (videoObj) => {
 	}
 
 	return null;
-}	
+};	
 
 /*
  * Validate mongo object id
@@ -124,4 +124,4 @@ const _isValidateId = (id) => {
 	}
 
 	return null;
-}
+};
