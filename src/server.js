@@ -9,12 +9,3 @@ import configKeys from "./config/keys";
 	await mongoose.connect(`${configKeys.MONGO_URL}/${configKeys.DATABASE}`,{useMongoClient: true});	
 	listen(); //Run express server		
 })();
-
-
-
-
-
-
-
-
-
