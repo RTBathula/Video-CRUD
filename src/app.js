@@ -54,7 +54,7 @@ export const listen = () => {
 
 	return new Promise((resolve) => {
 		const server = app.listen(app.get("port"), () => {    
-			const status = `Video CRUD API(${configKeys.ENV}) is up and running on PORT: ${app.get("port")}`;
+			const status = `Video CRUD API(${configKeys.ENV}) is up and running on PORT: ${app.get("port")}\n`;
 			process.stdout.write(status); //To show in CLI that server is running once success	
 			resolve(server);
 		});

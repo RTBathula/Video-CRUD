@@ -81,7 +81,7 @@ var listen = exports.listen = function listen() {
 
 	return new Promise(function (resolve) {
 		var server = app.listen(app.get("port"), function () {
-			var status = "Video CRUD API(" + _keys2.default.ENV + ") is up and running on PORT: " + app.get("port");
+			var status = "Video CRUD API(" + _keys2.default.ENV + ") is up and running on PORT: " + app.get("port") + "\n";
 			process.stdout.write(status); //To show in CLI that server is running once success	
 			resolve(server);
 		});
