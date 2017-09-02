@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
-var _mongoose = require('mongoose');
+var _mongoose = require("mongoose");
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
@@ -15,11 +15,11 @@ var ObjectId = Schema.ObjectId;
 
 //Video object schema definition
 var videoSchema = new Schema({
-  id: ObjectId,
-  createdDate: Date,
-  name: String,
-  keywords: Array
-}, { collection: 'video', versionKey: false });
+	id: ObjectId,
+	createdDate: Date,
+	name: String,
+	keywords: Array
+}, { collection: "video", versionKey: false });
 
-exports.default = _mongoose2.default.model('Video', videoSchema);
+exports.default = _mongoose2.default.model("Video", videoSchema);
 //# sourceMappingURL=video.js.map

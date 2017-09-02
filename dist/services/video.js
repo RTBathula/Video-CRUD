@@ -105,6 +105,7 @@ var deleteVideoById = exports.deleteVideoById = function deleteVideoById(id) {
 			if (err) {
 				return reject(err);
 			}
+
 			resolve(resp.deletedCount);
 		});
 	});

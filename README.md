@@ -30,7 +30,8 @@ which runs a nodejs server on default port on 8080 and mongodb on 27017.
 End point is **http://docker-machine-ip:8080**
 
 ## API Docs
-Open **http://docker-machine-ip:8080/docs** in browser to see API documentation
+Open **http://docker-machine-ip:8080/docs** in browser to see API documentation UI.
+Advanced: Set host-address:port in api-docs.yml to mock through api docs UI.
 
 ## SDK Generation
 Open **http://docker-machine-ip:8080/sdk/{lang}** in browser 

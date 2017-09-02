@@ -78,7 +78,7 @@ router.get("/:lang", function () {
 								method: "GET",
 								rejectUnauthorized: false,
 								url: body.link
-							}).on('error', function (err) {
+							}).on("error", function () {
 								return res.status(400).send("unable get the sdk");
 							}).pipe(res);
 						});
